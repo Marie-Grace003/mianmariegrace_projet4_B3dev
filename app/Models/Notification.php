@@ -4,14 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Subscription extends Model
+class Notification extends Model
 {
     protected $fillable = [
         'user_id',
-        'type',
-        'start_date',
-        'end_date',
-        'status'
+        'message',
+        'sent_at'
     ];
 
     public function user()
