@@ -1,0 +1,36 @@
+# Dépendances
+vendor/
+node_modules/
+
+# Environnement
+.env
+.env.*
+!.env.example
+
+# Base de données SQLite
+*.sqlite
+*.sqlite-journal
+
+# Logs
+*.log
+storage/logs/
+backend/storage/logs/
+
+# Cache Laravel
+bootstrap/cache/*.php
+backend/bootstrap/cache/*.php
+storage/framework/cache/
+storage/framework/sessions/
+storage/framework/views/
+backend/storage/framework/cache/
+backend/storage/framework/sessions/
+backend/storage/framework/views/
+
+# Build frontend
+frontend/dist/
+frontend/.vite/
+
+# IDE
+.idea/
+.vscode/
+*.DS_Store
