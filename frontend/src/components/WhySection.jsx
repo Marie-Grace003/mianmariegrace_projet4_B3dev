@@ -1,45 +1,31 @@
 function WhySection() {
-  const cards = [
-    {
-      id: 1,
-      title: 'SANTÉ MENTALE',
-      desc: 'Réduisez le stress et améliorez la qualité de votre sommeil grâce à la libération d\'endorphines.',
-    },
-    {
-      id: 2,
-      title: 'VITALITÉ & ÉNERGIE',
-      desc: 'Boostez votre métabolisme et gagnez en énergie pour affronter vos journées avec sérénité.',
-    },
-  ]
-
   return (
-    <section className="bg-white py-20 px-12" id="apropos">
-      <div className="max-w-3xl mx-auto text-center mb-12">
-        <h2 className="font-['Bebas_Neue'] text-5xl text-[#1A1A2E] tracking-widest mb-2">
-          POURQUOI INTÉGRER LE SPORT
-        </h2>
-        <h2 className="font-['Bebas_Neue'] text-5xl text-[#FF6B35] tracking-widest mb-8">
-          À VOTRE QUOTIDIEN ?
-        </h2>
-        <p className="font-['Inter'] text-sm text-gray-500 leading-relaxed">
-          La pratique régulière d'une activité physique est le pilier d'une vie équilibrée.
-          Au-delà de la condition physique, elle agit directement sur votre santé mentale,
-          votre énergie et votre longévité. Chez GymFlow, nous croyons qu'un corps en
-          mouvement est un esprit plus fort.
-        </p>
-      </div>
+    <section className="bg-[#0a0a0a] py-24 px-12" id="apropos">
+      <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+        <div className="rounded-2xl overflow-hidden h-130">
+          <img
+            src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80"
+            alt="Notre équipe"
+            className="w-full h-full object-cover grayscale"
+          />
+        </div>
 
-      <div className="flex flex-wrap gap-6 justify-center max-w-3xl mx-auto">
-        {cards.map((card) => (
-          <div key={card.id} className="flex-1 min-w-[240px] max-w-[340px] bg-[#E8E8E8] rounded-xl p-8">
-            <h3 className="font-['Bebas_Neue'] text-xl text-[#1A1A2E] tracking-wide mb-3">
-              {card.title}
-            </h3>
-            <p className="font-['Inter'] text-sm text-gray-500 leading-relaxed">
-              {card.desc}
-            </p>
-          </div>
-        ))}
+        <div>
+          <span className="text-[#FF5500] font-['Inter'] text-xs tracking-widest uppercase mb-5 block">
+            Notre philosophie
+          </span>
+          <h2 className="font-['Bebas_Neue'] text-5xl text-white leading-tight tracking-wide mb-6">
+            Une salle.<br />Une communauté.<br /><span className="text-[#FF5500]">Un objectif.</span>
+          </h2>
+          <p className="font-['Inter'] text-white/55 text-sm leading-relaxed mb-5">
+            Chez GymFlow, on croit que chaque séance compte. Que tu débuttes ou que tu prépares
+            une compétition, notre salle et nos coachs sont là pour t'accompagner à chaque étape.
+          </p>
+          <p className="font-['Inter'] text-white/55 text-sm leading-relaxed">
+            Rejoins une communauté de +2 000 membres qui repoussent leurs limites chaque jour.
+            Ton prochain record t'attend.
+          </p>
+        </div>
       </div>
     </section>
   )

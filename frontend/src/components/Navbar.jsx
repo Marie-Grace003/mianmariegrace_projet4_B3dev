@@ -12,33 +12,33 @@ function Navbar() {
   }
 
   return (
-    <nav className="bg-[#1A1A2E] sticky top-0 z-50 px-12 py-4 flex items-center justify-between">
-      <div className="font-['Bebas_Neue'] text-2xl text-white tracking-widest">
-        GYM<span className="text-[#FF6B35]">FLOW</span>
-      </div>
+    <nav className="bg-[#0a0a0a] sticky top-0 z-50 px-8 py-4 flex items-center justify-between border-b border-white/5">
+      <Link to="/" className="font-['Bebas_Neue'] text-xl tracking-widest text-white">
+        GYM<span className="text-[#FF5500]">FLOW</span>
+      </Link>
 
-      <ul className="flex gap-8 list-none">
-        <li><Link to="/" className="text-white font-['Inter'] text-sm hover:text-[#FF6B35] transition-colors">Accueil</Link></li>
-        <li><Link to="/#abonnements" className="text-white font-['Inter'] text-sm hover:text-[#FF6B35] transition-colors">Abonnements</Link></li>
-        <li><Link to="/#apropos" className="text-white font-['Inter'] text-sm hover:text-[#FF6B35] transition-colors">À propos</Link></li>
+      <ul className="hidden md:flex gap-8 list-none">
+        <li><Link to="/" className="text-white/50 font-['Inter'] text-sm hover:text-white transition-colors">Accueil</Link></li>
+        <li><a href="/#abonnements" className="text-white/50 font-['Inter'] text-sm hover:text-white transition-colors">Abonnements</a></li>
+        <li><a href="/#apropos" className="text-white/50 font-['Inter'] text-sm hover:text-white transition-colors">À propos</a></li>
       </ul>
 
       <div className="flex gap-3 items-center">
         {isAuth ? (
           <>
-            <Link to="/dashboard" className="px-5 py-2 border-2 border-[#FF6B35] text-[#FF6B35] rounded-md text-sm font-semibold font-['Inter'] hover:bg-[#FF6B35] hover:text-white transition-colors">
+            <Link to="/dashboard" className="text-white/60 font-['Inter'] text-sm hover:text-white transition-colors px-3 py-2">
               Mon espace
             </Link>
-            <button onClick={handleLogout} className="px-5 py-2 bg-[#FF6B35] text-white rounded-md text-sm font-semibold font-['Inter'] hover:bg-orange-600 transition-colors">
+            <button onClick={handleLogout} className="px-5 py-2 bg-[#FF5500] text-white rounded-full font-['Inter'] text-sm font-medium hover:bg-orange-600 transition-colors">
               Déconnexion
             </button>
           </>
         ) : (
           <>
-            <Link to="/login" className="px-5 py-2 border-2 border-[#FF6B35] text-[#FF6B35] rounded-md text-sm font-semibold font-['Inter'] hover:bg-[#FF6B35] hover:text-white transition-colors">
+            <Link to="/login" className="text-white/60 font-['Inter'] text-sm hover:text-white transition-colors px-3 py-2">
               Connexion
             </Link>
-            <Link to="/register" className="px-5 py-2 bg-[#FF6B35] text-white rounded-md text-sm font-semibold font-['Inter'] hover:bg-orange-600 transition-colors">
+            <Link to="/register" className="px-5 py-2 bg-[#FF5500] text-white rounded-full font-['Inter'] text-sm font-medium hover:bg-orange-600 transition-colors">
               S'inscrire
             </Link>
           </>

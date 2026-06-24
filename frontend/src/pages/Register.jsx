@@ -1,6 +1,5 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './Auth.css'
 
 function Register() {
@@ -43,13 +42,29 @@ function Register() {
   if (success) {
     return (
       <div className="auth-page">
-        <div className="auth-card">
-          <div className="auth-logo">GYM<span>FLOW</span></div>
-          <div className="auth-success">
-            <p>Compte créé avec succès !</p>
-            <Link to="/login" className="auth-btn" style={{ display: 'inline-block', marginTop: '16px', textDecoration: 'none' }}>
-              Se connecter
-            </Link>
+        <div className="auth-image">
+          <img
+            src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&q=80"
+            alt="Coaching GymFlow"
+          />
+          <div className="auth-image-overlay" />
+          <div className="auth-image-content">
+            <p className="auth-image-quote">
+              Bienvenue dans<br />
+              la <span>communauté.</span>
+            </p>
+            <p className="auth-image-sub">GymFlow — Ton espace fitness, toujours avec toi.</p>
+          </div>
+        </div>
+        <div className="auth-form-side">
+          <div className="auth-form-inner">
+            <span className="auth-logo">GYM<span>FLOW</span></span>
+            <div className="auth-success">
+              <p>Compte créé avec succès !</p>
+              <Link to="/login" className="auth-btn" style={{ marginTop: '20px', textDecoration: 'none' }}>
+                Se connecter
+              </Link>
+            </div>
           </div>
         </div>
       </div>
@@ -58,73 +73,97 @@ function Register() {
 
   return (
     <div className="auth-page">
-      <div className="auth-card">
-        <div className="auth-logo">GYM<span>FLOW</span></div>
-        <h1>Créer un compte</h1>
-        <p className="auth-subtitle">Rejoignez la communauté GymFlow</p>
 
-        {error && <div className="auth-error">{error}</div>}
-
-        <form onSubmit={handleSubmit}>
-          <div className="auth-field">
-            <label htmlFor="name">Nom complet</label>
-            <input
-              id="name"
-              type="text"
-              name="name"
-              placeholder="Jean Dupont"
-              value={form.name}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          <div className="auth-field">
-            <label htmlFor="email">Email</label>
-            <input
-              id="email"
-              type="email"
-              name="email"
-              placeholder="votre@email.com"
-              value={form.email}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          <div className="auth-field">
-            <label htmlFor="password">Mot de passe</label>
-            <input
-              id="password"
-              type="password"
-              name="password"
-              placeholder="Minimum 8 caractères"
-              value={form.password}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          <div className="auth-field">
-            <label htmlFor="password_confirmation">Confirmer le mot de passe</label>
-            <input
-              id="password_confirmation"
-              type="password"
-              name="password_confirmation"
-              placeholder="••••••••"
-              value={form.password_confirmation}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          <button type="submit" className="auth-btn">S'inscrire</button>
-        </form>
-
-        <p className="auth-link">
-          Déjà un compte ? <Link to="/login">Se connecter</Link>
-        </p>
+      {/* Côté image — photo différente de la page login */}
+      <div className="auth-image">
+        <img
+          src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&q=80"
+          alt="Coaching GymFlow"
+        />
+        <div className="auth-image-overlay" />
+        <div className="auth-image-content">
+          <p className="auth-image-quote">
+            Le premier pas,<br />
+            c'est de <span>s'inscrire.</span>
+          </p>
+          <p className="auth-image-sub">GymFlow — Ton espace fitness, toujours avec toi.</p>
+        </div>
       </div>
+
+      {/* Côté formulaire */}
+      <div className="auth-form-side">
+        <div className="auth-form-inner">
+
+          <span className="auth-logo">GYM<span>FLOW</span></span>
+
+          <h1>Créer un compte</h1>
+          <span className="auth-subtitle">Rejoins la communauté GymFlow</span>
+
+          {error && <div className="auth-error">{error}</div>}
+
+          <form onSubmit={handleSubmit}>
+            <div className="auth-field">
+              <label htmlFor="name">Nom complet</label>
+              <input
+                id="name"
+                type="text"
+                name="name"
+                placeholder="Jean Dupont"
+                value={form.name}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            <div className="auth-field">
+              <label htmlFor="email">Email</label>
+              <input
+                id="email"
+                type="email"
+                name="email"
+                placeholder="votre@email.com"
+                value={form.email}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            <div className="auth-field">
+              <label htmlFor="password">Mot de passe</label>
+              <input
+                id="password"
+                type="password"
+                name="password"
+                placeholder="Minimum 8 caractères"
+                value={form.password}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            <div className="auth-field">
+              <label htmlFor="password_confirmation">Confirmer le mot de passe</label>
+              <input
+                id="password_confirmation"
+                type="password"
+                name="password_confirmation"
+                placeholder="••••••••"
+                value={form.password_confirmation}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            <button type="submit" className="auth-btn">Créer mon compte</button>
+          </form>
+
+          <p className="auth-link">
+            Déjà un compte ? <Link to="/login">Se connecter</Link>
+          </p>
+
+        </div>
+      </div>
+
     </div>
   )
 }

@@ -2,6 +2,8 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Home from './pages/Home'
+import Dashboard from './pages/Dashboard'
+import Abonnements from './pages/Abonnements'
 
 const isAuthenticated = () => !!localStorage.getItem('token')
 
@@ -20,7 +22,15 @@ function App() {
           path="/dashboard"
           element={
             <PrivateRoute>
-              <div>Dashboard (à venir)</div>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/abonnements"
+          element={
+            <PrivateRoute>
+              <Abonnements />
             </PrivateRoute>
           }
         />

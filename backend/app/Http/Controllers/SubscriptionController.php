@@ -9,10 +9,12 @@ use Illuminate\Http\Request;
 
 class SubscriptionController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         return response()->json(
-            Subscription::with(['user', 'subscriptionType'])->get()
+            Subscription::with(['subscriptionType'])
+                ->where('user_id', $request->user()->id)
+                ->get()
         );
     }
 

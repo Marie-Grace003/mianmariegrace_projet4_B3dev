@@ -1,51 +1,45 @@
 function Features() {
   const features = [
     {
-      number: '01.',
-      title: 'GESTION SIMPLIFIÉE',
-      desc: 'Centralisez la gestion de vos membres et de vos abonnements en toute simplicité.',
+      title: 'TON ABONNEMENT, SOUS CONTRÔLE',
+      desc: 'Consulte ton abonnement, ses dates et son statut directement depuis ton espace membre.',
     },
     {
-      number: '02.',
-      title: 'RÉSERVATION INTUITIVE',
-      desc: 'Automatisez vos réservations de cours et suivez vos inscriptions en temps réel.',
+      title: 'RÉSERVE TES COURS EN UN CLIC',
+      desc: 'Yoga, cross-training, pilates — choisis ton cours, réserve ta place, arrive prêt.',
     },
     {
-      number: '03.',
-      title: 'EXPÉRIENCE PREMIUM',
-      desc: "Améliorez l'expérience de vos sportifs grâce à une plateforme fluide et sécurisée.",
+      title: 'RESTE MOTIVÉ',
+      desc: 'Reçois des notifications, suis ta progression et ne rate plus aucune séance.',
     },
   ]
 
   return (
-    <section className="bg-[#E8E8E8] py-20 px-12">
+    <section className="bg-[#111111] py-24 px-12">
       <div className="max-w-5xl mx-auto flex flex-col md:flex-row gap-16 items-center">
-
         <div className="flex-1">
           <img
-            src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600"
+            src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=800&q=80"
             alt="Salle de sport"
-            className="w-full h-[400px] object-cover rounded-xl"
+            className="w-full h-100 object-cover rounded-2xl grayscale"
           />
         </div>
 
         <div className="flex-1">
-          <h2 className="font-['Bebas_Neue'] text-4xl text-[#1A1A2E] tracking-wide mb-10">
-            POURQUOI LES MEMBRES<br />
-            <span className="text-[#FF6B35]">NOUS CHOISISSENT ?</span>
+          <h2 className="font-['Bebas_Neue'] text-4xl text-white tracking-wide mb-10 leading-tight">
+            Tout ce dont tu as besoin<br />
+            <span className="text-[#FF5500]">pour t'entraîner.</span>
           </h2>
 
-          <div className="flex flex-col gap-7">
+          <div className="flex flex-col gap-8">
             {features.map((f) => (
-              <div key={f.number} className="flex gap-4 items-start">
-                <span className="font-['Bebas_Neue'] text-3xl text-[#FF6B35] min-w-[40px]">
-                  {f.number}
-                </span>
+              <div key={f.title} className="flex gap-5 items-start">
+                <div className="w-0.5 bg-[#FF5500] self-stretch mt-1 shrink-0 rounded-full" />
                 <div>
-                  <h3 className="font-['Inter'] font-bold text-sm text-[#1A1A2E] tracking-widest mb-1">
+                  <h3 className="font-['Inter'] font-bold text-xs text-white tracking-widest mb-2 uppercase">
                     {f.title}
                   </h3>
-                  <p className="font-['Inter'] text-sm text-gray-500 leading-relaxed">
+                  <p className="font-['Inter'] text-sm text-white/45 leading-relaxed">
                     {f.desc}
                   </p>
                 </div>
@@ -53,7 +47,6 @@ function Features() {
             ))}
           </div>
         </div>
-
       </div>
     </section>
   )
