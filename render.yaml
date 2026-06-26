@@ -9,7 +9,6 @@ services:
   - type: web
     name: gymflow-backend
     runtime: docker
-    plan: free
     rootDir: backend
     dockerfilePath: ./Dockerfile
     envVars:
@@ -32,7 +31,6 @@ services:
   - type: web
     name: gymflow-frontend
     runtime: static
-    plan: free
     rootDir: frontend
     buildCommand: npm ci && npm run build
     staticPublishPath: dist
