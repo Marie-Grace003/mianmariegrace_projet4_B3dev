@@ -15,7 +15,8 @@ function Login() {
     e.preventDefault()
     setError('')
     try {
-      const res = await fetch('http://localhost:8000/api/login', {
+      const base = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+      const res = await fetch(`${base}/api/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify(form),
@@ -60,7 +61,7 @@ function Login() {
           <h1>Connexion</h1>
           <span className="auth-subtitle">Accède à ton espace membre</span>
 
-          {error && <div className="auth-error">{error}</div>}
+          {error && <div className="auth-error shake">{error}</div>}
 
           <form onSubmit={handleSubmit}>
             <div className="auth-field">

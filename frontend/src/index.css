@@ -1,1 +1,53 @@
 @import "tailwindcss";
+
+/* ── Smooth scroll global ── */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ── Scrollbar custom (thème sombre) ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+  background: #FF5500;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #e04a00;
+}
+
+/* ── Animations au scroll ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Transition de page (fondu) ── */
+.page-enter {
+  animation: pageFadeIn 0.35s ease forwards;
+}
+@keyframes pageFadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Shake sur erreur auth ── */
+.shake {
+  animation: shake 0.4s ease;
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%       { transform: translateX(-8px); }
+  40%       { transform: translateX(8px); }
+  60%       { transform: translateX(-5px); }
+  80%       { transform: translateX(5px); }
+}

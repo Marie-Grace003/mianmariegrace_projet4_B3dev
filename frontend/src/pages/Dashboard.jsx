@@ -74,7 +74,7 @@ function Dashboard() {
   }
 
   return (
-    <div className="dashboard-page">
+    <div className="dashboard-page page-enter">
       <Navbar />
 
       <div className="dashboard-content">
@@ -84,7 +84,7 @@ function Dashboard() {
 
         {/* Titre de bienvenue */}
         <div className="dashboard-welcome">
-          <h1>Bonjour, <span>{user?.name}</span></h1>
+          <h1>{getGreeting()}, <span>{user?.name}</span></h1>
           <p>Bienvenue dans ton espace membre GymFlow.</p>
         </div>
 
@@ -103,12 +103,13 @@ function Dashboard() {
             <span className="dash-card-label">Mes abonnements</span>
 
             {subscriptions.length === 0 ? (
-              <>
-                <p className="sub-empty">Vous n'avez pas encore d'abonnement actif.</p>
+              <div style={{ textAlign: 'center', padding: '12px 0 8px' }}>
+                <div style={{ fontSize: '2rem', marginBottom: '10px' }}>🏋️</div>
+                <p className="sub-empty">Tu n'as pas encore d'abonnement actif.</p>
                 <button className="btn-subscribe" onClick={() => navigate('/abonnements')}>
-                  Souscrire un abonnement
+                  Choisir un abonnement
                 </button>
-              </>
+              </div>
             ) : (
               subscriptions.map((sub) => (
                 <div key={sub.id} className="sub-item">
@@ -158,6 +159,14 @@ function Dashboard() {
       </div>
     </div>
   )
+}
+
+// Retourne le bon salut selon l'heure
+function getGreeting() {
+  const h = new Date().getHours()
+  if (h >= 5 && h < 12) return 'Bonjour'
+  if (h >= 12 && h < 18) return 'Bon après-midi'
+  return 'Bonsoir'
 }
 
 // Formate une date ISO en format lisible : "12 juin 2026"

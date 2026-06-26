@@ -20,7 +20,8 @@ function Register() {
       return
     }
     try {
-      const res = await fetch('http://localhost:8000/api/register', {
+      const base = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+      const res = await fetch(`${base}/api/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify(form),
@@ -99,7 +100,7 @@ function Register() {
           <h1>Créer un compte</h1>
           <span className="auth-subtitle">Rejoins la communauté GymFlow</span>
 
-          {error && <div className="auth-error">{error}</div>}
+          {error && <div className="auth-error shake">{error}</div>}
 
           <form onSubmit={handleSubmit}>
             <div className="auth-field">

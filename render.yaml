@@ -1,0 +1,41 @@
+services:
+
+  # ── Base de données PostgreSQL ──────────────────────────────
+  - type: pserv
+    name: gymflow-db
+    plan: free
+    databaseName: gymflow
+    databaseUser: gymflow
+
+  # ── Backend Laravel ─────────────────────────────────────────
+  - type: web
+    name: gymflow-backend
+    plan: free
+    rootDir: backend
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_KEY
+        generateValue: true
+      - key: APP_DEBUG
+        value: false
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DATABASE_URL
+        fromDatabase:
+          name: gymflow-db
+          property: connectionString
+      - key: FRONTEND_URL
+        value: https://gymflow-frontend.onrender.com
+
+  # ── Frontend React ──────────────────────────────────────────
+  - type: web
+    name: gymflow-frontend
+    plan: free
+    rootDir: frontend
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_URL
+        value: https://gymflow-backend.onrender.com

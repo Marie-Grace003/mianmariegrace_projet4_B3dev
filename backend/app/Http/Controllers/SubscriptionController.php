@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SubscriptionConfirmed;
 use App\Models\Notification;
 use App\Models\Subscription;
 use App\Models\SubscriptionType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class SubscriptionController extends Controller
 {
@@ -37,14 +39,17 @@ class SubscriptionController extends Controller
             'statut'     => 'actif',
         ]);
 
-       Notification::create([
-            'user_id' => $request->user()->id,
+        Notification::create([
+            'user_id'         => $request->user()->id,
             'subscription_id' => $subscription->id,
-            'message' => "Votre abonnement {$type->nom_type} a été activé.",
-            'type' => 'abonnement',
-            'date_envoi' => now(),
-            'lu' => false,
+            'message'         => "Votre abonnement {$type->nom_type} a été activé.",
+            'type'            => 'email',
+            'date_envoi'      => now(),
+            'lu'              => false,
         ]);
+
+        Mail::to($request->user()->email)
+            ->send(new SubscriptionConfirmed($subscription->load(['user', 'subscriptionType'])));
 
         return response()->json([
             'message' => 'Abonnement créé avec succès',

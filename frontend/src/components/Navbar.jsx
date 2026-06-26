@@ -13,9 +13,12 @@ function Navbar() {
 
   return (
     <nav className="bg-[#0a0a0a] sticky top-0 z-50 px-8 py-4 flex items-center justify-between border-b border-white/5">
-      <Link to="/" className="font-['Bebas_Neue'] text-xl tracking-widest text-white">
-        GYM<span className="text-[#FF5500]">FLOW</span>
-      </Link>
+      <div className="flex-1">
+        <Link to="/" className="font-['Bebas_Neue'] text-xl tracking-widest group">
+          <span className="text-white transition-colors duration-300 group-hover:text-[#FF5500]">GYM</span>
+          <span className="text-[#FF5500] transition-colors duration-300 group-hover:text-white">FLOW</span>
+        </Link>
+      </div>
 
       <ul className="hidden md:flex gap-8 list-none">
         <li><Link to="/" className="text-white/50 font-['Inter'] text-sm hover:text-white transition-colors">Accueil</Link></li>
@@ -23,7 +26,7 @@ function Navbar() {
         <li><a href="/#apropos" className="text-white/50 font-['Inter'] text-sm hover:text-white transition-colors">À propos</a></li>
       </ul>
 
-      <div className="flex gap-3 items-center">
+      <div className="flex-1 flex gap-3 items-center justify-end">
         {isAuth ? (
           <>
             <Link to="/dashboard" className="text-white/60 font-['Inter'] text-sm hover:text-white transition-colors px-3 py-2">
