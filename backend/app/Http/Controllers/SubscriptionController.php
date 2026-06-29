@@ -9,6 +9,7 @@ use App\Models\SubscriptionType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
+
 class SubscriptionController extends Controller
 {
     public function index(Request $request)
@@ -50,7 +51,6 @@ class SubscriptionController extends Controller
 
         Mail::to($request->user()->email)
             ->send(new SubscriptionConfirmed($subscription->load(['user', 'subscriptionType'])));
-
         return response()->json([
             'message' => 'Abonnement créé avec succès',
             'subscription' => $subscription->load([
