@@ -44,7 +44,7 @@ class SubscriptionController extends Controller
             'user_id'         => $request->user()->id,
             'subscription_id' => $subscription->id,
             'message'         => "Votre abonnement {$type->nom_type} a été activé.",
-            'type'            => 'email',
+            'type'            => 'abonnement',
             'date_envoi'      => now(),
             'lu'              => false,
         ]);
