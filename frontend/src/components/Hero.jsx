@@ -20,7 +20,7 @@ function Hero() {
           </span>
         </div>
 
-        <div className="flex items-center gap-3 mb-7">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 mb-7">
           <div className="flex -space-x-2">
             {[11, 22, 33].map(i => (
               <img
