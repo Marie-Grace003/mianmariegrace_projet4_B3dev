@@ -82,7 +82,7 @@ function Register() {
             GYM<span className="text-[#FF5500]">FLOW</span>
           </span>
 
-          <h1 className="font-['Bebas_Neue'] text-4xl text-white tracking-wide mb-1.5">Créer un compte</h1>
+          <h1 className="font-['Bebas_Neue'] text-4xl text-white tracking-wide mb-1.5">Création un compte</h1>
           <span className="text-[13px] text-white/35 mb-8 block font-['Inter']">Rejoins la communauté GymFlow</span>
 
           {error && (
