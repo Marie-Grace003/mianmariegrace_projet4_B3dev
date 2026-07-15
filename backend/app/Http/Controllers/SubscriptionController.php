@@ -9,16 +9,19 @@ use App\Models\SubscriptionType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
-
 class SubscriptionController extends Controller
 {
     public function index(Request $request)
     {
-        return response()->json(
-            Subscription::with(['subscriptionType'])
-                ->where('user_id', $request->user()->id)
-                ->get()
-        );
+        $user = $request->user();
+
+        $query = Subscription::with(['subscriptionType']);
+
+        if ($user->role !== 'admin') {
+            $query->where('user_id', $user->id);
+        }
+
+        return response()->json($query->get());
     }
 
     public function store(Request $request)
@@ -51,27 +54,26 @@ class SubscriptionController extends Controller
 
         Mail::to($request->user()->email)
             ->send(new SubscriptionConfirmed($subscription->load(['user', 'subscriptionType'])));
+
         return response()->json([
             'message' => 'Abonnement créé avec succès',
-            'subscription' => $subscription->load([
-                'user',
-                'subscriptionType'
-            ])
+            'subscription' => $subscription->load(['user', 'subscriptionType'])
         ], 201);
     }
 
-    public function show(Subscription $subscription)
+    public function show(Request $request, Subscription $subscription)
     {
+        $this->authorizeAccess($request, $subscription);
+
         return response()->json(
-            $subscription->load([
-                'user',
-                'subscriptionType'
-            ])
+            $subscription->load(['user', 'subscriptionType'])
         );
     }
 
     public function update(Request $request, Subscription $subscription)
     {
+        $this->authorizeAccess($request, $subscription);
+
         $validated = $request->validate([
             'statut' => 'sometimes|string|in:actif,inactif,expiré',
         ]);
@@ -80,19 +82,26 @@ class SubscriptionController extends Controller
 
         return response()->json([
             'message' => 'Abonnement mis à jour',
-            'subscription' => $subscription->load([
-                'user',
-                'subscriptionType'
-            ])
+            'subscription' => $subscription->load(['user', 'subscriptionType'])
         ]);
     }
 
-    public function destroy(Subscription $subscription)
+    public function destroy(Request $request, Subscription $subscription)
     {
+        $this->authorizeAccess($request, $subscription);
+
         $subscription->delete();
 
-        return response()->json([
-            'message' => 'Abonnement supprimé'
-        ]);
+        return response()->json(['message' => 'Abonnement supprimé']);
+    }
+
+
+    private function authorizeAccess(Request $request, Subscription $subscription): void
+    {
+        $user = $request->user();
+
+        if ($user->role !== 'admin' && $subscription->user_id !== $user->id) {
+            abort(403, "Vous n'êtes pas autorisé à accéder à cet abonnement.");
+        }
     }
 }
