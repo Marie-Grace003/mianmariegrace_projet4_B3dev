@@ -70,7 +70,7 @@ class NotificationController extends Controller
 
         $notification->delete();
 
-        return response()->json(['message' => 'Notification supprimée']);
+        return response()->noContent();
     }
 
     private function authorizeAccess(Request $request, Notification $notification): void

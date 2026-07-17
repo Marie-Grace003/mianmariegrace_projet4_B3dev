@@ -34,3 +34,4 @@ frontend/.vite/
 .idea/
 .vscode/
 *.DS_Store
+.phpunit.result.cache
