@@ -2,7 +2,8 @@
 FROM php:8.3-cli-alpine
 
 # Extensions PHP nécessaires pour Laravel
-RUN apk add --no-cache \
+RUN apk update && apk upgrade --no-cache \
+    && apk add --no-cache \
         bash \
         curl \
         zip \
