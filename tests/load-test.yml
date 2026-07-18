@@ -1,5 +1,5 @@
 config:
-  target: "https://gymflow-backend.onrender.com"
+  target: "http://localhost:9000"
   phases:
     - duration: 20
       arrivalRate: 1
@@ -22,8 +22,8 @@ scenarios:
       - post:
           url: "/api/login"
           json:
-            email: "rajooo@gmail.com"
-            password: "rajooo789"
+            email: "{{ $processEnvironment.LOAD_TEST_EMAIL }}"
+            password: "{{ $processEnvironment.LOAD_TEST_PASSWORD }}"
           capture:
             - json: "$.token"
               as: "token"
@@ -42,8 +42,8 @@ scenarios:
       - post:
           url: "/api/login"
           json:
-            email: "rajooo@gmail.com"
-            password: "rajooo789"
+            email: "{{ $processEnvironment.LOAD_TEST_EMAIL }}"
+            password: "{{ $processEnvironment.LOAD_TEST_PASSWORD }}"
           capture:
             - json: "$.token"
               as: "token"
@@ -58,8 +58,8 @@ scenarios:
       - post:
           url: "/api/login"
           json:
-            email: "rajooo@gmail.com"
-            password: "rajooo789"
+            email: "{{ $processEnvironment.LOAD_TEST_EMAIL }}"
+            password: "{{ $processEnvironment.LOAD_TEST_PASSWORD }}"
           capture:
             - json: "$.token"
               as: "token"
