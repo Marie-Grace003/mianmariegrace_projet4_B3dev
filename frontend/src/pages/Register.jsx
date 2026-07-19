@@ -6,6 +6,7 @@ function Register() {
   const [error, setError] = useState('')
   const [success, setSuccess] = useState(false)
   const navigate = useNavigate()
+  const [consent, setConsent] = useState(false)
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
 
@@ -13,11 +14,15 @@ function Register() {
     e.preventDefault()
     setError('')
     if (form.password !== form.password_confirmation) { setError('Les mots de passe ne correspondent pas.'); return }
-    
-    
+
+
     const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%*?&]).{8,}$/
     if (!passwordRegex.test(form.password)) {
       setError('Le mot de passe doit contenir au moins 8 caractères, une majuscule, un chiffre et un caractère spécial (@$!%*?&).')
+      return
+    }
+    if (!consent) {
+      setError('Vous devez accepter la politique de confidentialité pour continuer.')
       return
     }
 
@@ -118,6 +123,21 @@ function Register() {
               </div>
             ))}
 
+            <label className="flex items-start gap-2.5 mb-5 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={consent}
+                onChange={(e) => setConsent(e.target.checked)}
+                className="mt-0.5 accent-[#FF5500]"
+              />
+              <span className="text-[13px] text-white/50 font-['Inter']">
+                J'accepte la{' '}
+                <Link to="/politique-de-confidentialite" target="_blank" className="text-[#FF5500] font-semibold no-underline hover:underline">
+                  politique de confidentialité
+                </Link>
+              </span>
+            </label>
+            
             <button type="submit" className="w-full py-3.5 bg-[#FF5500] text-white border-none rounded-lg text-sm font-bold cursor-pointer mt-2.5 hover:bg-[#e04a00] transition-colors block text-center font-['Inter']">
               Créer mon compte
             </button>

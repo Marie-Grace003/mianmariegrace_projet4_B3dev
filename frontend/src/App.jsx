@@ -7,6 +7,7 @@ import Abonnements from './pages/Abonnements'
 import Payment from './pages/Payment'
 import NotFound from './pages/NotFound'
 import Admin from './pages/Admin'
+import PolitiqueConfidentialite from './pages/PolitiqueConfidentialite'
 
 const isAuthenticated = () => !!localStorage.getItem('token')
 const isAdmin = () => {
@@ -62,6 +63,8 @@ function App() {
           }
         />
         <Route path="*" element={<NotFound />} />
+
+        <Route path="/politique-de-confidentialite" element={<PolitiqueConfidentialite />} />
       </Routes>
     </BrowserRouter>
   )
