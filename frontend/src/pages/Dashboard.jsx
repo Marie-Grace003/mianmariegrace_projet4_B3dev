@@ -44,6 +44,17 @@ function Dashboard() {
     fetchData()
   }, [navigate])
 
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape') {
+        setCancelTargetId(null)
+        setShowProfileModal(false)
+      }
+    }
+    window.addEventListener('keydown', handleEscape)
+    return () => window.removeEventListener('keydown', handleEscape)
+  }, [])
+
   const openProfileModal = () => {
     setProfileForm({ name: user?.name || '', password: '', password_confirmation: '' })
     setProfileError('')
@@ -109,7 +120,7 @@ function Dashboard() {
       <Navbar />
 
       {cancelTargetId && (
-        <div className="fixed inset-0 bg-black/70 z-100 flex items-center justify-center p-4" onClick={() => setCancelTargetId(null)}>
+        <div className="fixed inset-0 bg-black/70 z-100 flex items-center justify-center p-4" onClick={() => setCancelTargetId(null)} role="dialog" aria-modal="true">
           <div className="bg-[#161616] border border-white/8 rounded-2xl p-8 w-full max-w-sm text-center" onClick={e => e.stopPropagation()}>
             <p className="font-['Bebas_Neue'] text-2xl text-white tracking-wide mb-2">Résilier l'abonnement ?</p>
             <p className="text-sm text-white/40 font-['Inter'] mb-6">Cette action est irréversible.</p>
@@ -131,7 +142,7 @@ function Dashboard() {
       {showProfileModal && (
         <div
           className="fixed inset-0 bg-black/70 z-100 flex items-center justify-center p-4"
-          onClick={() => setShowProfileModal(false)}
+          onClick={() => setShowProfileModal(false)} role="dialog" aria-modal="true"
         >
           <div
             className="bg-[#161616] border border-white/8 rounded-2xl p-8 w-full max-w-md"
@@ -142,6 +153,7 @@ function Dashboard() {
               <button
                 className="text-white/40 hover:text-white transition-colors px-3 py-2 rounded-md bg-transparent border-none cursor-pointer text-base"
                 onClick={() => setShowProfileModal(false)}
+                aria-label="Fermer la fenêtre"
               >✕</button>
             </div>
 
@@ -237,11 +249,10 @@ function Dashboard() {
                     Du {formatDate(sub.date_debut)} au {formatDate(sub.date_fin)}
                   </p>
                   <div className="flex items-center justify-between mt-2">
-                    <span className={`inline-block px-3 py-0.5 rounded-full text-xs font-semibold font-['Inter'] ${
-                      sub.statut === 'actif'
+                    <span className={`inline-block px-3 py-0.5 rounded-full text-xs font-semibold font-['Inter'] ${sub.statut === 'actif'
                         ? 'bg-green-500/10 text-green-400 border border-green-500/20'
                         : 'bg-red-500/10 text-red-400 border border-red-500/20'
-                    }`}>
+                      }`}>
                       {sub.statut === 'actif' ? 'Actif' : 'Inactif'}
                     </span>
                     <button
